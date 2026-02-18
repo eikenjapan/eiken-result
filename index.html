@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>合否結果照会｜実用英語技能検定 1級（2025年度 第1回）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", "Meiryo", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 640px;
+      margin: 60px auto;
+      background: #fff;
+      border: 1px solid #dcdcdc;
+      padding: 40px 36px;
+    }
+    h1 {
+      font-size: 20px;
+      border-bottom: 2px solid #003a8f;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #003a8f;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      display: none;
+    }
+    .pass {
+      color: #c00000;
+      font-weight: bold;
+    }
+    .fail {
+      color: #003a8f;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>合否結果照会</h1>
+
+    <p>実用英語技能検定 1級<br>2025年度 第1回</p>
+
+    <label for="exam">受験番号</label>
+    <input id="exam" type="text" placeholder="例：E1-2025-0001">
+
+    <button onclick="check()">結果を表示</button>
+
+    <div id="result" class="result"></div>
+
+    <footer>
+      © EIKEN Foundation of Japan
+    </footer>
+  </div>
+
+  <script>
+    function check() {
+      const exam = document.getElementById("exam").value.trim();
+      const result = document.getElementById("result");
+
+      if (!exam) {
+        alert("受験番号を入力してください。");
+        return;
+      }
+
+      // ★ 合格させたい番号をここに書く
+      if (exam === "E1-2025-0001") {
+        result.innerHTML = `
+          <p class="pass">合格</p>
+          <p>一次試験：合格<br>二次試験：合格</p>
+          <p>総合評価：合格</p>
+        `;
+      } else {
+        result.innerHTML = `
+          <p class="fail">不合格</p>
+          <p>今回の試験では合格基準に達しませんでした。</p>
+        `;
+      }
+
+      result.style.display = "block";
+    }
+  </script>
+</body>
+</html>
