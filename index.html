@@ -197,20 +197,51 @@ button{
 
 <script>
 function show(){
-  const v = document.getElementById("exam").value;
-  if(!v){ alert("受験番号を入力してください"); return; }
+  const v = document.getElementById("exam").value.trim();
+  if(!v){
+    alert("受験番号を入力してください");
+    return;
+  }
 
-  document.getElementById("sheet").style.display="block";
+  // ▼ 本格的な受験番号データ
+  const data = {
+    "24181010037": {
+      pass: true,
+      r: 735,
+      l: 720,
+      w: 705,
+      s: 710
+    }
+  };
+
+  const result = data[v];
+  if(!result){
+    alert("該当する受験番号が見つかりません。");
+    return;
+  }
+
+  document.getElementById("sheet").style.display = "block";
   document.getElementById("no").textContent = v;
 
-  // ==== ここで合否・点数を操作 ====
-  const pass = true; // falseで不合格
-  if(!pass){
-    const pf = document.getElementById("pf");
-    pf.textContent="不 合 格";
-    pf.className="fail";
+  // 合否
+  const pf = document.getElementById("pf");
+  if(result.pass){
+    pf.textContent = "合　格";
+    pf.className = "pass";
+  }else{
+    pf.textContent = "不 合 格";
+    pf.className = "fail";
   }
+
+  // スコア
+  document.getElementById("r").textContent = result.r;
+  document.getElementById("l").textContent = result.l;
+  document.getElementById("w").textContent = result.w;
+  document.getElementById("s").textContent = result.s;
+  document.getElementById("t").textContent =
+    result.r + result.l + result.w + result.s;
 }
+
 </script>
 
 </body>
